@@ -1,0 +1,29 @@
+{
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "edvorkin/simple-docker-scala-app",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8080, "hostPort": 0, "servicePort": 0, "protocol": "tcp" }
+
+      ]
+    }
+  },
+  "cmd": "java -jar /tmp/simple-docker-scala-app-assembly-0.0.2.jar Boot",
+  "id": "simple-docker-scala-app",
+  "instances": 1,
+  "cpus": 0.1,
+  "mem": 256,
+  "healthChecks": [
+      {
+        "protocol": "HTTP",
+        "portIndex": 0,
+        "path": "/",
+        "gracePeriodSeconds": 5,
+        "intervalSeconds": 20,
+        "maxConsecutiveFailures": 3
+      }
+
+    ]
+}
